@@ -1,0 +1,36 @@
+{%  load staticfiles %}
+<center>
+  <img src="http://127.0.0.1:8000/static/img/increase_capital_logo.jpg" width="250" height="120"/>
+<h3>Filtered Customers Data</h3>
+</center>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Customer Id</th>
+                    <th>Name</th>
+                    <th>Mobile Reference</th>
+                    <th>Added on</th>
+                    <th>Loan Status</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in customers %}
+                <tr>
+                    <td></td>
+                    <td>{{ i.customer_id}}</td>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{i.created_at}}</td>
+                    <td>{{i.get_loan_status_display}}</td>
+                    <td>{{i.get_gender_display}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

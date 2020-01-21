@@ -1,0 +1,34 @@
+{%  load staticfiles %}
+<center>
+  <img src="http://127.0.0.1:8000/static/img/increase_capital_logo.jpg" width="250" height="120"/>
+<h3>Filtered Loans Repayments Data</h3>
+</center>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Loan Code</th>
+                    <th>Repayment Date</th>
+                    <th>Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in customers %}
+                <tr>
+                    <td></td>
+                    <td>{{ i.name}}</td>
+                    <td>{{ i.phone }}</td>
+                    <td>{{ i.loan_code }}</td>
+                    <td>{{i.repayment_date}}</td>
+                    <td>{{i.amount_paid}}</td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

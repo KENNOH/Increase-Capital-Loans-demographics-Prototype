@@ -1,0 +1,64 @@
+{% extends "home/index.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <strong>
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        </strong>
+    </div>
+
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Repayments Demographics Table</h6>
+              <p class="m-0 font-weight-bold text-primary">Showing {{count}} Repayments</p>
+              <div style="float: right;"> 
+                <a href="/repayments/">
+                  <button class="btn-success" type="submit" name="filter_repayments">Back</button>
+                </a>
+                <a href="/">
+                  <button class="btn-danger" type="submit" name="filter_repayments">Home</button>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <form method='POST' action="/search/">{% csrf_token %}
+                  <label>Search:</label>
+                  <input type="text" id="search_loan" name="search_loan" placeholder="Search by keyword">
+                  <input type="hidden" name="hidden" id="hidden" value="repayments">
+                  <button class="btn-primary" type="submit" name="filter_repayments">Submit</button>
+                </form>
+                <br>
+                <form method='POST' action="/filter/">{% csrf_token %}
+                    <label for="date">Start Date</label>
+                    <input type="date" name="startdate" required />
+                    <label for="date">End Date</label>
+                    <input type="date" name="enddate" required />
+                    <input type="hidden" name="hidden" value="repayments">
+                    <button class="btn-primary" type="submit" name="filter_loan">Filter repayments</button>
+                    <div style="float: right;">
+                      <input name="excel" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm" type="Submit"
+                        value="Export to excel" />
+                      <i class="fas fa-download fa-sm text-white-50"></i>
+                      <input name="pdf" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="Submit"
+                        value="Export to pdf" />
+                    </div>
+                </form>
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <tbody>
+               <tr><td>
+                  {% render_table repay %}
+                </td></tr>
+              </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Last checked at {{ now }}  <p style="float: right;">Showing 20 entries</p></div>
+          </div>
+        {% endblock %}

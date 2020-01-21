@@ -1,0 +1,66 @@
+{% extends "home/index.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-danger">
+        <strong>
+            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        </strong>
+    </div>
+
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Customer Loans Table</h6>
+              <p class="m-0 font-weight-bold text-primary">Showing {{loan_count}} loans for:</p>
+            <strong>Name:</strong><h6 class="m-0 font-weight-bold text-success">{{c.name}}</h6>
+            <strong>Customer Id:</strong><h6 class="m-0 font-weight-bold text-success">{{c.customer_id}}</h6>
+            <strong>Phone:</strong><h6 class="m-0 font-weight-bold text-success">{{c.phone}}</h6>
+              <div style="float: right;"> 
+                <a href="/customers/">
+                  <button class="btn-success" type="submit" name="filter_repayments">Back</button>
+                </a>
+                <a href="/">
+                  <button class="btn-danger" type="submit" name="filter_repayments">Home</button>
+                </a>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <tbody>
+               <tr><td>
+                  {% render_table assets %}
+                </td></tr>
+              </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer small text-muted">Last checked at {{ now }}  <p style="float: right;">Showing {{loan_count}} entries</p></div>
+          </div>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Customer Repayments Demographics Table</h6>
+        <p class="m-0 font-weight-bold text-primary">Showing {{repay_count}} Repayments</p>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                            {% render_table repay %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer small text-muted">Last checked at {{ now }} <p style="float: right;">Showing {{repay_count}} entries</p>
+    </div>
+</div>
+        {% endblock %}

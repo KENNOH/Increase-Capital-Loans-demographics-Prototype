@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ic Loans</title>
+
+    <!-- Scripts -->
+    {% load static %}
+    <script src="{% static 'js/app.js' %}"></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+
+    <!-- Styles -->
+    <link href="{% static 'css/app.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div class="featured-sec">
+            <div class="container featured-sec-inner">
+                <div class="row">
+        
+                    <div class="col">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                                {% endfor %}
+                        </ul>
+                        {% endif %}
+        
+                        <h3 class="grey-heading">Increase Capital Loans Demographics</h3>
+                        <div class="featured-post-wrapper">
+        
+                            <div class="featured-post-text-wrapper">
+                                <style type="text/css">
+                                    .radii {
+                                        border-radius: 5px;
+                                    }
+                                </style>
+                                {% block content %}
+                                <a href="/upload/">
+                                    <p>Upload new loan data</p>
+                                </a>
+                                <a href="/display/">
+                                    <p>View existing loans data</p>
+                                </a>
+                                <a href="/customers/">
+                                    <p>View Customer Demographics</p>
+                                </a>
+                                <a href="/repayments/">
+                                    <p>View Loan Repayments data</p>
+                                </a>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        
+        </div>
+        </div>
+</body>
+</html>
